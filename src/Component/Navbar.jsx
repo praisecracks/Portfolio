@@ -34,7 +34,10 @@ function Navbar() {
   return (
     <header className="fixed top-0 left-0 w-full z-50 shadow-sm bg-white dark:bg-black dark:text-white transition">
       <nav className="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
-        <h1 className="text-2xl font-bold text-teal-500">Praise.dev</h1>
+        {/* Left: Logo with fixed width */}
+        <div className="w-32 flex-shrink-0">
+          <h1 className="text-2xl font-bold text-teal-500">Praise.dev</h1>
+        </div>
 
         {/* Desktop Nav Links */}
         <ul className="hidden md:flex gap-8 font-medium text-gray-700 dark:text-gray-200">
@@ -47,9 +50,9 @@ function Navbar() {
           ))}
         </ul>
 
-        {/* Right Controls */}
-        <div className="flex items-center gap-4">
-          <DarkModeToggle /> {/* ✅ Clean dark mode toggle */}
+        {/* Right Controls with same width as logo */}
+        <div className="w-32 flex items-center gap-4 justify-end flex-shrink-0">
+          <DarkModeToggle />
           <button onClick={toggleMenu} className="md:hidden" title="Menu">
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
