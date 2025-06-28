@@ -3,8 +3,8 @@ import { Fade } from 'react-awesome-reveal';
 import { FaGithub, FaExternalLinkAlt, FaTimes } from 'react-icons/fa';
 import Testimonial from './Testimonial'; 
 import web1 from '../assets/web1.png'
-import web2 from '../assets/web2.png'
 import mobile from "../assets/mobile2.png"
+import web2 from '../assets/Web2.png';
 
 
 const projects = [
