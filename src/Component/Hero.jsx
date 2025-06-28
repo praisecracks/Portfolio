@@ -7,11 +7,11 @@ import prof from '../assets/avataaars.png'
 function Hero() {
   return (
     <section
-  id="home"
-  className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-20 py-16 gap-2 bg-white dark:bg-black transition duration-300 relative md:px-32"
->
+      id="home"
+      className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-20 py-16 gap-4 bg-white dark:bg-black transition duration-300 relative md:px-32"
+    >
       {/* Text Section */}
-      <div className="text-center md:text-left w-full md:w-1/2 fade-in md:pr-10">
+      <div className="text-center md:text-left w-full md:w-1/2 fade-in md:pl-10">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
           Hello, I'm Praise 👋
         </h1>
