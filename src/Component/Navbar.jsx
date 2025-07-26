@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'react-feather';
-import DarkModeToggle from './DarkModeToggle'; 
+import DarkModeToggle from './DarkModeToggle';
 
 const sections = ['home', 'about', 'projects', 'Toolkit', 'contact'];
 
@@ -19,7 +19,6 @@ function Navbar() {
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -33,13 +32,12 @@ function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 shadow-sm bg-white dark:bg-black dark:text-white transition">
-      <nav className="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
-        {/* Left: Logo with fixed width */}
+      <nav className="max-w-screen-xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3">
         <div className="w-32 flex-shrink-0">
           <h1 className="text-2xl font-bold text-teal-500">Praise.dev</h1>
         </div>
 
-        {/* Desktop Nav Links */}
+        {/* Desktop Links */}
         <ul className="hidden md:flex gap-8 font-medium text-gray-700 dark:text-gray-200">
           {sections.map((sec) => (
             <li key={sec}>
@@ -50,7 +48,7 @@ function Navbar() {
           ))}
         </ul>
 
-        {/* Right Controls with same width as logo */}
+        {/* Right Controls */}
         <div className="w-32 flex items-center gap-4 justify-end flex-shrink-0">
           <DarkModeToggle />
           <button onClick={toggleMenu} className="md:hidden" title="Menu">
