@@ -1,7 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaFigma, FaBootstrap, FaGem } from 'react-icons/fa';
-import { SiJavascript, SiFirebase, SiTailwindcss, SiExpress } from 'react-icons/si';
+import {
+  FaReact, FaHtml5, FaCss3Alt, FaNodeJs,
+  FaGitAlt, FaFigma, FaBootstrap, FaGem
+} from 'react-icons/fa';
+import {
+  SiJavascript, SiFirebase, SiTailwindcss, SiExpress
+} from 'react-icons/si';
 
 const tools = [
   {
@@ -120,9 +125,9 @@ function Toolkit() {
           {tools.map((tool, index) => (
             <motion.div
               key={index}
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.3 }}
-              className="relative bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 transition-colors hover:shadow-xl group"
+              className="relative backdrop-blur-md bg-white/80 dark:bg-gray-800/80 border border-white/20 dark:border-gray-700 rounded-xl p-6 shadow-md hover:shadow-xl transition-all"
             >
               <div className="flex items-center gap-4 mb-4">
                 <div className="text-4xl">{tool.icon}</div>
@@ -133,7 +138,16 @@ function Toolkit() {
                   </p>
                 </div>
               </div>
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="bubble bubble-1" />
+        <div className="bubble bubble-2" />
+        <div className="bubble bubble-3" />
+                <div className="bubble bubble-3" />
+        <div className="bubble bubble-3" />
 
+
+      </div>
+      
               {/* Proficiency Bar */}
               <div className="mt-2">
                 <div className="h-2 bg-gray-300 dark:bg-gray-700 rounded-full overflow-hidden">

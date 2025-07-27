@@ -68,7 +68,7 @@ function Contact() {
           discuss product design work or partnership opportunities.
         </motion.p>
 
-        <p className="mb-8 inline-block bg-teal-100 dark:bg-gray-800 text-sm text-teal-600 dark:text-teal-400 px-4 py-2 rounded-full font-medium">
+        <p className="mb-12 inline-block bg-teal-100 dark:bg-gray-800 text-sm text-teal-600 dark:text-teal-400 px-4 py-2 rounded-full font-medium shadow-md">
           🌍 Remote / Available Globally
         </p>
 

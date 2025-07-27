@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { FaGithub, FaExternalLinkAlt, FaTimes } from 'react-icons/fa';
-import Testimonial from './Testimonial'; 
-import web1 from '../assets/web1.png'
-import mobile from "../assets/mobile2.png"
+import web1 from '../assets/web1.png';
+import mobile from '../assets/mobile2.png';
 import web2 from '../assets/Web2.png';
-
 
 const projects = [
   {
     title: 'Portfolink Web App',
     platform: 'Web',
-    description: 'A modern and responsive portfolio builter, with sharable one time link instantly generated.',
-    tech: ['React', 'Tailwind', 'Vite', 'Firebase', 'Node js', 'Express js'],
+    description: 'A modern and responsive portfolio builder with a sharable one-time link instantly generated.',
+    tech: ['React', 'Tailwind', 'Vite', 'Firebase', 'Node.js', 'Express.js'],
     image: web2,
     github: 'https://github.com/praisecracks/Portfolink',
     live: 'https://portfolink-ck.netlify.app',
@@ -20,7 +18,7 @@ const projects = [
   {
     title: 'News & Event Reporting System',
     platform: 'Web',
-    description: 'A dissemination of News and Event Reporting system with in Dominion University.',
+    description: 'A news and event reporting system for Dominion University.',
     tech: ['React', 'Firebase', 'CSS', 'Tailwind CSS'],
     image: web1,
     github: 'https://github.com/praisecracks/DU-FEED-APP',
@@ -30,7 +28,7 @@ const projects = [
     title: 'Animal Health Tracker',
     platform: 'Mobile',
     description: 'Mobile app that tracks animal health and connects to nearby vet clinics.',
-    tech: ['React Native', 'Google Maps API', 'Google', 'Firebase'],
+    tech: ['React Native', 'Google Maps API', 'Firebase'],
     image: mobile,
     github: 'https://github.com/praisecracks/Animal-health-Tracker',
     live: 'https://github.com/praisecracks/Animal-health-Tracker',
@@ -53,15 +51,15 @@ function Projects() {
   }, []);
 
   return (
-<section
-  id="projects"
-  className="scale-95 opacity-0 animate-[fadeIn_0.4s_ease-in-out_forwards] bg-gray-50 dark:bg-gray-900 py-20 px-6 md:px-12 transition-colors"
->
-
-    <section id="projects" className="bg-gray-50 dark:bg-gray-900 py-20 px-6 md:px-12 transition-colors">
-      <div className="max-w-6xl mx-auto text-center">
+    <section
+      id="projects"
+      className="bg-gray-50 dark:bg-gray-900 py-20 px-6 md:px-12 transition-colors"
+    >
+      <div className="max-w-6xl mx-auto text-center relative z-10">
         <Fade direction="up" cascade damping={0.2}>
-          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">Projects</h2>
+          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+            Projects
+          </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
             Explore some of my recent projects built with a focus on intuitive user experiences,
             clean design, and reliable functionality.
@@ -110,9 +108,18 @@ function Projects() {
             </Fade>
           ))}
         </div>
+
+        {/* Modal */}
         {modalProject && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-white max-w-2xl w-full rounded-xl p-6 shadow-lg transform transition-all duration-300 scale-95 animate-fadeIn">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center"
+            style={{ backdropFilter: 'blur(8px)', backgroundColor: 'rgba(0, 30, 60, 0.7)' }}
+            onClick={() => setModalProject(null)}
+          >
+            <div
+              className="relative bg-white dark:bg-gray-900 text-gray-800 dark:text-white max-w-2xl w-full mx-4 md:mx-0 rounded-xl p-6 shadow-2xl transition-transform transform scale-100 animate-[fadeIn_0.4s_ease-in-out]"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-2xl font-bold">{modalProject.title}</h3>
                 <button
@@ -155,8 +162,6 @@ function Projects() {
         )}
       </div>
     </section>
-    </section>
-
   );
 }
 

@@ -44,3 +44,156 @@ html {
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-out forwards;
 }
+html {
+  scroll-behavior: smooth;
+}
+
+/* Floating bubbles animation */
+.bubble-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  width: 20px;
+  height: 20px;
+  background: rgba(94, 234, 212, 0.4);
+  border-radius: 50%;
+  animation: rise 15s linear infinite;
+}
+
+.bubble:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+  width: 15px;
+  height: 15px;
+}
+
+.bubble:nth-child(2) {
+  left: 20%;
+  animation-delay: 3s;
+  width: 25px;
+  height: 25px;
+}
+
+.bubble:nth-child(3) {
+  left: 30%;
+  animation-delay: 5s;
+  width: 10px;
+  height: 10px;
+}
+
+.bubble:nth-child(4) {
+  left: 40%;
+  animation-delay: 7s;
+  width: 20px;
+  height: 20px;
+}
+
+.bubble:nth-child(5) {
+  left: 50%;
+  animation-delay: 2s;
+  width: 12px;
+  height: 12px;
+}
+
+.bubble:nth-child(6) {
+  left: 60%;
+  animation-delay: 4s;
+  width: 18px;
+  height: 18px;
+}
+
+.bubble:nth-child(7) {
+  left: 70%;
+  animation-delay: 1s;
+  width: 22px;
+  height: 22px;
+}
+
+.bubble:nth-child(8) {
+  left: 80%;
+  animation-delay: 6s;
+  width: 16px;
+  height: 16px;
+}
+
+.bubble:nth-child(9) {
+  left: 90%;
+  animation-delay: 8s;
+  width: 14px;
+  height: 14px;
+}
+
+.bubble:nth-child(10) {
+  left: 95%;
+  animation-delay: 10s;
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-120vh) scale(0.5);
+    opacity: 0;
+  }
+}
+/* Floating Bubbles / Stars / Particles */
+.bubble-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bubble-container::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: float-bubbles 60s linear infinite;
+  opacity: 0.1;
+}
+
+@keyframes float-bubbles {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/* Optional Neon Text */
+.neon-text {
+  text-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #0ff;
+}
+.neon-text {
+  text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff, 0 0 30px #00f7ff;
+  color: #00f7ff;
+}
+
+/* Gradient border wrapper for avatars */
+.border-gradient {
+  background: linear-gradient(135deg, #0ff 0%, #0f0 100%);
+  border-radius: 9999px;
+}

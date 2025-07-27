@@ -8,6 +8,16 @@ function Footer() {
     <footer className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 px-6 py-10 t-20 transition-colors ">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
 
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="bubble bubble-1" />
+        <div className="bubble bubble-2" />
+        <div className="bubble bubble-3" />
+                <div className="bubble bubble-3" />
+        <div className="bubble bubble-3" />
+
+
+      </div>
+      
         {/* Branding */}
         <div className="text-xl font-bol dark:text-white font-semibold ">
           Praise.dev
