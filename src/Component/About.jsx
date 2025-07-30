@@ -15,9 +15,10 @@ function About() {
   return (
     <section
       id="about"
-      className="min-h-screen pt- px-4 sm:px-8 md:px-16 lg:px-24 py-24 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+      className="min-h-screen py-24 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
     >
-      <div className="max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row items-center gap-12">
+
         {/* Text Section */}
         <div className="w-full md:w-1/2" data-aos="fade-up">
           <h3 className="text-sm uppercase tracking-widest text-teal-500 font-semibold mb-2">
