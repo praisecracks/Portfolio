@@ -80,37 +80,40 @@ function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            key="mobile-menu"
-            className="md:hidden bg-white/80 dark:bg-black/90 backdrop-blur-md px-6 pt-2 pb-6 rounded-b-lg shadow-md"
-            initial={{ opacity: 0, y: -10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.98 }}
-            transition={{ duration: 0.25 }}
+        <AnimatePresence>
+          {menuOpen && (
+           <motion.div
+  key="mobile-menu"
+  className="md:hidden border-t border-white/10 dark:border-gray-900/5 bg-white/30 dark:bg-gray-900/10 backdrop-blur-lg shadow-xl rounded-b-xl"
+  initial={{ opacity: 0, y: -10, scale: 0.98 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+  exit={{ opacity: 0, y: -10, scale: 0.98 }}
+  transition={{ duration: 0.25 }}
+>
+  <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <ul className="flex flex-col gap-4 font-medium text-base py-4">
+      {sections.map((sec) => (
+        <li key={sec}>
+          <a
+            href={`#${sec}`}
+            onClick={() => setMenuOpen(false)}
+            className={`block px-3 py-2 rounded-lg transition-colors duration-200 ${
+              activeSection === sec
+                ? "text-teal-500 font-semibold"
+                : "text-gray-800 dark:text-gray-100 hover:bg-white/40 dark:hover:bg-white/10"
+            }`}
+            aria-label={`Navigate to ${sec}`}
           >
-            <ul className="flex flex-col gap-4 font-medium text-base">
-              {sections.map((sec) => (
-                <li key={sec}>
-                  <a
-                    href={`#${sec}`}
-                    onClick={() => setMenuOpen(false)}
-                    className={`block px-3 py-2 rounded-lg transition-colors duration-200 ${
-                      activeSection === sec
-                        ? "text-teal-500 font-semibold"
-                        : "text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-                    }`}
-                    aria-label={`Navigate to ${sec}`}
-                  >
-                    {sec.charAt(0).toUpperCase() + sec.slice(1)}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {sec.charAt(0).toUpperCase() + sec.slice(1)}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</motion.div>
+          )}
+        </AnimatePresence>
+
     </header>
   );
 }
