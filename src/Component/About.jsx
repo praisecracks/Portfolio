@@ -1,77 +1,122 @@
 import React from 'react';
-import { FaDownload } from 'react-icons/fa';
+import {
+  FaDownload,
+  FaCode,
+  FaBriefcase,
+  FaLightbulb,
+  FaHandshake,
+  FaGithub,
+  FaLinkedin,
+  FaInstagram
+} from 'react-icons/fa';
 import prof from '../assets/MySelf.jpg';
 
 function About() {
   return (
     <section
       id="about"
-      className="relative min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 py-20 gap-16 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300"
+      className="min-h-screen pt- px-4 sm:px-8 md:px-16 lg:px-24 py-24 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
     >
-      {/* Floating Bubbles */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="bubble bubble-1" />
-        <div className="bubble bubble-2" />
-        <div className="bubble bubble-3" />
-                <div className="bubble bubble-3" />
-        <div className="bubble bubble-3" />
+      <div className="max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
+        {/* Text Section */}
+        <div className="w-full md:w-1/2" data-aos="fade-up">
+          <h3 className="text-sm uppercase tracking-widest text-teal-500 font-semibold mb-2">
+            Full-Stack Developer · Creative Problem Solver
+          </h3>
 
+          <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 mb-4">
+            Meet Durotoluwa Praise
+          </h2>
 
-      </div>
+          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4 max-w-xl">
+            I’m a <span className="text-teal-500 font-semibold">Full-Stack Developer</span> passionate about turning ideas into scalable, clean, and human-centered web solutions. With 4+ years of hands-on experience and 15+ shipped projects, I’m committed to building tools that make an impact.
+          </p>
+          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6 max-w-xl">
+            My focus is on performance, UX, and long-term maintainability. I’m currently open to full-time roles, freelance gigs, or collaborations that bring fresh challenges and real value.
+          </p>
 
-      {/* Avatar Section */}
-      <div
-        className="w-full md:w-1/2 flex justify-center md:justify-end relative z-10"
-        data-aos="fade-up"
-      >
-        <img
-          src={prof}
-          alt="Durotoluwa Praise - Developer"
-          className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-xl shadow-lg border-4 border-teal-500 hover:scale-105 transition-transform duration-300"
-        />
-      </div>
+          {/* Highlights */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700 dark:text-gray-300 mb-6">
+            <div className="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <FaCode className="text-teal-500 text-lg" />
+              <span>15+ Projects Completed</span>
+            </div>
+            <div className="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <FaBriefcase className="text-teal-500 text-lg" />
+              <span>4+ Years of Experience</span>
+            </div>
+            <div className="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <FaLightbulb className="text-teal-500 text-lg" />
+              <span>Creative & Scalable Solutions</span>
+            </div>
+            <div className="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-lg shadow">
+              <FaDownload className="text-teal-500 text-lg" />
+              <a href="/Resume.pdf" className="hover:underline" download>
+                Download Resume
+              </a>
+            </div>
+          </div>
 
-      {/* Text Section */}
-      <div
-        className="w-full md:w-1/2 text-center md:text-left relative z-10"
-        data-aos="fade-up"
-        data-aos-delay="150"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-teal-500 to-teal-500 mb-4">
-          About Me
-        </h2>
+          {/* Social + CTA */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            {/* Social Links */}
+            <div className="flex gap-4">
+              <a
+                href="https://github.com/praisecracks"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-teal-500 transition text-sm font-medium"
+              >
+                <FaGithub /> GitHub
+              </a>
+              <a
+                href="http://www.linkedin.com/in/durotoluwa-praise-9b3767357"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-teal-500 transition text-sm font-medium"
+              >
+                <FaLinkedin /> LinkedIn
+              </a>
+              <a
+                href="https://www.instagram.com/praisecrack/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-teal-500 transition text-sm font-medium"
+              >
+                <FaInstagram /> Instagram
+              </a>
+            </div>
 
-        <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          I’m{' '}
-          <span className="text-teal-500 font-semibold animate-pulse">
-            Durotoluwa Praise
-          </span>
-          , a Full-Stack Developer passionate about building clean, user-focused
-          digital experiences. With over 15 completed projects and 4+ years of
-          experience, I develop impactful, scalable web solutions.
-          <br />
-          <br />
-          I hold a strong background in Software Engineering and love
-          transforming complex ideas into seamless products. I’m currently open
-          to full-time roles, freelance gigs, or collaborations that drive
-          innovation.
-        </p>
+            {/* CTA */}
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-teal-500 to-purple-600 text-white font-medium rounded-lg hover:brightness-110 hover:scale-105 transition-all duration-300 shadow"
+            >
+              <FaHandshake className="text-white animate-bounce" />
+              Let’s Work Together
+            </a>
+          </div>
 
-        <ul className="mt-6 space-y-2 text-gray-700 dark:text-gray-400 text-sm md:text-base">
-          <li className="animate-bounce">🎓 B.Sc. in Software Engineering</li>
-          <li className="animate-bounce delay-100">💻 4+ years building real-world projects</li>
-          <li className="animate-bounce delay-200">🚀 Mission: Deliver value with code and creativity</li>
-        </ul>
+          {/* Signature Line */}
+          <p className="italic text-gray-400 text-xs mt-6">
+            "Building digital solutions that speak human."
+          </p>
+        </div>
 
-        <a
-          href="/resume.docx"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 mt-8 px-6 py-2 bg-gradient-to-r from-teal-500 to-purple-600 text-white font-medium rounded-lg hover:brightness-110 hover:scale-105 transition-all duration-300 shadow-lg"
-          download={true}
+        {/* Image Section */}
+        <div
+          className="w-full md:w-1/2 flex justify-center"
+          data-aos="fade-left"
         >
-          <FaDownload className="animate-bounce" /> Download Resume
-        </a>
+          <div className="relative group">
+            <img
+              src={prof}
+              alt="Durotoluwa Praise"
+              className="w-56 sm:w-64 md:w-80 object-cover rounded-xl shadow-lg border-4 border-teal-500 transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute -inset-1 rounded-xl blur-md bg-gradient-to-br from-teal-400 to-purple-600 opacity-25 group-hover:opacity-50 transition duration-300"></div>
+          </div>
+        </div>
       </div>
     </section>
   );

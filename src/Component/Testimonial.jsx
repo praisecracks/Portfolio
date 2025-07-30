@@ -1,9 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import {
   FaStar,
   FaStarHalfAlt,
@@ -45,10 +46,39 @@ function renderStars(rating) {
   const half = rating % 1 >= 0.5;
 
   for (let i = 0; i < 5; i++) {
-    if (i < full) stars.push(<FaStar key={i} className="text-yellow-400" />);
+    if (i < full)
+      stars.push(
+        <motion.span
+          key={i}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: i * 0.1 }}
+        >
+          <FaStar className="text-yellow-400" />
+        </motion.span>
+      );
     else if (i === full && half)
-      stars.push(<FaStarHalfAlt key={i} className="text-yellow-400" />);
-    else stars.push(<FaRegStar key={i} className="text-yellow-400" />);
+      stars.push(
+        <motion.span
+          key={i}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: i * 0.1 }}
+        >
+          <FaStarHalfAlt className="text-yellow-400" />
+        </motion.span>
+      );
+    else
+      stars.push(
+        <motion.span
+          key={i}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: i * 0.1 }}
+        >
+          <FaRegStar className="text-yellow-400" />
+        </motion.span>
+      );
   }
 
   return <div className="flex gap-0.5 mt-2">{stars}</div>;
@@ -58,7 +88,7 @@ function Testimonial() {
   return (
     <section
       id="testimonials"
-      className="relative px-4 py-20 bg-white dark:bg-black transition-colors duration-300"
+      className="relative px-4 py-20 bg-white dark:bg-[#010101] transition-colors duration-300"
     >
       <div className="max-w-5xl mx-auto text-center relative">
         <motion.h2
@@ -80,32 +110,38 @@ function Testimonial() {
         </motion.p>
 
         <Swiper
-          modules={[Navigation, Autoplay]}
-          navigation={{
-            nextEl: "#nextBtn",
-            prevEl: "#prevBtn",
+          modules={[Navigation, Autoplay, Pagination]}
+          navigation={{ nextEl: "#nextBtn", prevEl: "#prevBtn" }}
+          autoplay={{ delay: 7000 }}
+          pagination={{
+            clickable: true,
+            el: ".swiper-custom-pagination",
+            bulletClass: "swiper-custom-bullet",
+            bulletActiveClass: "swiper-custom-bullet-active",
           }}
-          autoplay={{ delay: 8000 }}
           spaceBetween={30}
           className="px-4"
         >
           {testimonials.map((item, index) => (
             <SwiperSlide key={index}>
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-2xl shadow-lg p-8 max-w-xl mx-auto text-left transition-all duration-500 hover:scale-[1.02]"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 120 }}
+                className="bg-white/30 dark:bg-white/10 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl shadow-2xl p-8 max-w-xl mx-auto text-left transition-all duration-500 hover:shadow-3xl"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <img
                     src={item.avatar}
                     alt={item.name}
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-4 border-teal-400 shadow"
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-4 border-teal-400 shadow-md hover:shadow-xl transition duration-300"
                   />
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">{item.name}</h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{item.title}</p>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      {item.name}
+                    </h4>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {item.title}
+                    </p>
                     {renderStars(item.rating)}
                   </div>
                 </div>
@@ -117,19 +153,22 @@ function Testimonial() {
           ))}
         </Swiper>
 
-        {/* Navigation Arrows */}
+        {/* Arrows */}
         <button
           id="prevBtn"
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-100/70 dark:bg-white/10 hover:bg-white/20 dark:hover:bg-white/20 backdrop-blur-lg border border-white/50 dark:border-white/20 text-gray-900 dark:text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white/30 dark:bg-white/10 hover:bg-white/50 dark:hover:bg-white/20 backdrop-blur-lg border border-white/30 text-gray-900 dark:text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
         >
           <FaChevronLeft size={20} />
         </button>
         <button
           id="nextBtn"
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-100/70 dark:bg-white/10 hover:bg-white/20 dark:hover:bg-white/20 backdrop-blur-lg border border-white/50 dark:border-white/20 text-gray-900 dark:text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white/30 dark:bg-white/10 hover:bg-white/50 dark:hover:bg-white/20 backdrop-blur-lg border border-white/30 text-gray-900 dark:text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
         >
           <FaChevronRight size={20} />
         </button>
+
+        {/* Dots */}
+        <div className="swiper-custom-pagination flex justify-center gap-3 mt-8" />
       </div>
     </section>
   );
