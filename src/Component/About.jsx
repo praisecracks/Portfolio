@@ -30,8 +30,9 @@ function About() {
           </h2>
 
           <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4 max-w-xl">
-            I’m a <span className="text-teal-500 font-semibold">Full-Stack Developer</span> passionate about turning ideas into scalable, clean, and human-centered web solutions. With 4+ years of hands-on experience and 15+ shipped projects, I’m committed to building tools that make an impact.
-          </p>
+  I’m a <span className="text-teal-500 font-semibold">Full-Stack Developer</span> specializing in modern web technologies like <strong>React.js, Next.js, and TypeScript</strong>. Over the past 4+ years, I’ve built fast, scalable, and user-friendly applications for startups, agencies, and personal projects—shipping 15+ projects that deliver measurable results. I thrive in collaborative, remote-first environments and love turning complex problems into elegant, functional solutions.
+</p>
+
           <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6 max-w-xl">
             My focus is on performance, UX, and long-term maintainability. I’m currently open to full-time roles, freelance gigs, or collaborations that bring fresh challenges and real value.
           </p>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
-import web1 from "../assets/web1.png";
-import mobile from "../assets/mobile2.png";
-import web2 from "../assets/Web2.png";
+import web1 from "../assets/t.jpg";
+import mobile from "../assets/rr.jpeg";
+import web2 from "../assets/h.jpg";
 
 const projects = [
   {
@@ -11,7 +11,7 @@ const projects = [
     platform: "Web",
     description:
       "A modern and responsive portfolio builder with a sharable one-time link instantly generated.",
-    tech: ["React", "Tailwind", "Vite", "Firebase", "Node.js", "Express.js"],
+    tech: ["React", "Tailwind CSS", "Vite", "Firebase", "Node.js", "Express.js", "AI"],
     image: web2,
     github: "https://github.com/praisecracks/Portfolink",
     live: "https://portfolink-ck.netlify.app",
@@ -20,7 +20,7 @@ const projects = [
     title: "News & Event Reporting System",
     platform: "Web",
     description: "A news and event reporting system for Dominion University.",
-    tech: ["React", "Firebase", "CSS", "Tailwind CSS"],
+    tech: ["React", "Firebase", "CSS", "Tailwind CSS", "Boostrap"],
     image: web1,
     github: "https://github.com/praisecracks/DU-FEED-APP",
     live: "https://du-feed.netlify.app",
@@ -30,7 +30,7 @@ const projects = [
     platform: "Mobile",
     description:
       "Mobile app that tracks animal health and connects to nearby vet clinics.",
-    tech: ["React Native", "Google Maps API", "Firebase"],
+    tech: ["React Native", "MongoDB", "Tailwind CSS", "Google Maps API", "Firebase"],
     image: mobile,
     github: "https://github.com/praisecracks/Animal-health-Tracker",
     live: "https://github.com/praisecracks/Animal-health-Tracker",
