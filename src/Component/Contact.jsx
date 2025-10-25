@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -12,6 +12,38 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+
+// TiltCard component for info cards
+function TiltCard({ icon, text }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  let cardRef = null;
+
+  const handleMouseMove = (e) => {
+    const rect = cardRef.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 15;
+    const y = -((e.clientY - rect.top) / rect.height - 0.5) * 15;
+    setTilt({ x, y });
+  };
+
+  const resetTilt = () => setTilt({ x: 0, y: 0 });
+
+  return (
+    <motion.div
+      ref={(el) => (cardRef = el)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={resetTilt}
+      style={{
+        transform: `rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
+        perspective: 1000,
+      }}
+      whileHover={{ scale: 1.05, boxShadow: '0 15px 25px rgba(20,184,166,0.3)' }}
+      className="flex items-center gap-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-white/30 rounded-xl p-4 shadow-md transition-transform cursor-pointer"
+    >
+      <div className="text-teal-500 text-xl">{icon}</div>
+      <p className="text-gray-900 dark:text-gray-200 font-medium">{text}</p>
+    </motion.div>
+  );
+}
 
 function Contact() {
   const formik = useFormik({
@@ -33,29 +65,33 @@ function Contact() {
   });
 
   return (
-    <section id="contact" className="relative py-20 px-6 bg-gradient-to-b from-white via-gray-50 to-white dark:from-black dark:via-gray-900 dark:to-black transition-colors">
-      <div className="max-w-5xl mx-auto text-center">
+    <section
+      id="contact"
+      className="relative py-20 px-6 bg-gray-100 dark:bg-gray-900 transition-colors"
+    >
+      <div className="max-w-6xl mx-auto text-left">
 
         {/* Title */}
         <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-extrabold text-gray-800 dark:text-white mb-4"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="kode-mono text-5xl sm:text-9xl font-extrabold text-transparent bg-clip-text 
+                     bg-gradient-to-r from-teal-800 via-purple-300 to-purple-600 mb-6"
         >
-          Let's Connect
+          Let's Connect!
         </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-gray-600 dark:text-gray-300 mb-10 max-w-xl mx-auto"
+          className="text-gray-700 dark:text-gray-300 mb-10 max-w-xl"
         >
           Got a project in mind or looking to collaborate? I'm always up for building beautiful, scalable, and user-focused experiences.
         </motion.p>
 
-        <p className="mb-12 inline-block backdrop-blur-lg bg-white/30 dark:bg-white/10 text-sm text-teal-700 dark:text-teal-300 px-4 py-2 rounded-full font-medium shadow-lg border border-white/30">
+        <p className="mb-12 inline-block backdrop-blur-md bg-white/80 dark:bg-gray-800/80 text-sm text-teal-700 dark:text-teal-300 px-4 py-2 rounded-full font-medium shadow-lg border border-white/30">
           🌍 Remote-Friendly | Open to Global Roles
         </p>
 
@@ -80,7 +116,7 @@ function Contact() {
                     value={formik.values[field]}
                     onChange={formik.handleChange}
                     placeholder=" "
-                    className="w-full p-4 rounded-xl bg-gray-300/30 dark:bg-white/10 text-gray-900 dark:text-white placeholder-transparent border border-white/20 backdrop-blur-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
+                    className="w-full p-4 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-white placeholder-transparent border border-white/30 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
                   />
                 ) : (
                   <textarea
@@ -89,7 +125,7 @@ function Contact() {
                     value={formik.values.message}
                     onChange={formik.handleChange}
                     placeholder=" "
-                    className="w-full p-4 rounded-xl bg-gray-300/30 dark:bg-white/10 text-gray-900 dark:text-white placeholder-transparent border border-white/20 backdrop-blur-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
+                    className="w-full p-4 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-white placeholder-transparent border border-white/30 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
                   />
                 )}
                 <label
@@ -125,7 +161,7 @@ function Contact() {
             </div>
           </motion.div>
 
-          {/* Contact Info Cards (Glass Style) */}
+          {/* Contact Info Cards (Tilt) */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -134,18 +170,24 @@ function Contact() {
           >
             {[
               { icon: <FaEnvelope />, text: "praisecrackdev@gmail.com" },
-              { icon: <FaPhoneAlt />, text: "+234 6999 1171" },
+              { icon: <FaPhoneAlt />, text: "+234 7069 9911 71" },
               { icon: <FaMapMarkerAlt />, text: "Based in Lagos, Nigeria" },
             ].map((info, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-4 bg-white/20 dark:bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-4 shadow-md hover:shadow-xl transition text-left"
-              >
-                <div className="text-teal-500 text-xl">{info.icon}</div>
-                <p className="text-gray-800 dark:text-gray-200 font-medium">{info.text}</p>
-              </div>
+              <TiltCard key={i} icon={info.icon} text={info.text} />
             ))}
+
+            {/* Optional Collab Heading */}
+            <motion.h2
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="kode-mono text-5xl sm:text-9xl font-extrabold text-transparent bg-clip-text 
+                         bg-gradient-to-r from-teal-800 via-purple-300 to-purple-600 mb-6 text-left"
+            >
+              Let's Collab!
+            </motion.h2>
           </motion.div>
+
         </form>
 
         {/* Back to Top Button */}

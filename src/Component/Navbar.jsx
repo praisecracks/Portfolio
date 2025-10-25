@@ -3,7 +3,7 @@ import { Menu, X } from "react-feather";
 import DarkModeToggle from "./DarkModeToggle";
 import { motion, AnimatePresence } from "framer-motion";
 
-const sections = ["home", "about", "projects", "Toolkit", "contact"];
+const sections = ["home", "about", "projects", "testimonials" ,"Toolkit", "contact"];
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -44,7 +44,7 @@ function Navbar() {
     >
       <nav className="max-w-screen-xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3">
         <div className="w-32 flex-shrink-0">
-          <h1 className="text-2xl font-bold text-teal-500">Praise.dev</h1>
+          <h1 className="text-2xl font-bold text-teal-500"> <strong className="kode-mono">PC</strong>.dev</h1>
         </div>
 
         {/* Desktop Nav */}

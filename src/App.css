@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Oxanium:wght@200..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -208,4 +210,12 @@ html {
 
 .swiper-custom-bullet-active {
   background: #14b8a6; /* Tailwind teal-500 */
+}
+
+
+.kode-mono{
+  font-family: "Kode Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
 }

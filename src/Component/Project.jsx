@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaTimes, FaGlobe, FaMobileAlt } from "react-icons/fa";
 import web1 from "../assets/t.jpg";
 import mobile from "../assets/rr.jpeg";
 import web2 from "../assets/h.jpg";
@@ -20,7 +20,7 @@ const projects = [
     title: "News & Event Reporting System",
     platform: "Web",
     description: "A news and event reporting system for Dominion University.",
-    tech: ["React", "Firebase", "CSS", "Tailwind CSS", "Boostrap"],
+    tech: ["React", "Firebase", "CSS", "Tailwind CSS", "Bootstrap"],
     image: web1,
     github: "https://github.com/praisecracks/DU-FEED-APP",
     live: "https://du-feed.netlify.app",
@@ -41,7 +41,6 @@ function Projects() {
   const [modalProject, setModalProject] = useState(null);
   const [filter, setFilter] = useState("All");
 
-  // ✅ FIXED: Case-insensitive filtering
   const filteredProjects =
     filter === "All"
       ? projects
@@ -60,32 +59,34 @@ function Projects() {
   return (
     <section
       id="projects"
-      className="bg-white dark:bg-gray-900 py-20 px-6 md:px-12 transition-colors"
+      className="bg-gray-100 dark:bg-gray-900 py-20 px-6 md:px-12 transition-colors duration-500"
     >
-      <div className="max-w-6xl mx-auto text-center relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Heading */}
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-gray-800 dark:text-white mb-4"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="kode-mono text-5xl sm:text-9xl font-extrabold text-transparent bg-clip-text 
+                     bg-gradient-to-r from-teal-800 via-purple-300 to-purple-600 mb-6 text-left"
         >
           Projects
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10"
+          className="text-gray-600 dark:text-gray-300 text-left mb-12 max-w-2xl mx-auto"
         >
-          Explore some of my recent projects built with a focus on intuitive
-          user experiences, clean design, and reliable functionality.
+          Explore my recent work with a focus on futuristic design, smooth UX,
+          and interactive functionality.
         </motion.p>
 
         {/* Filter Tabs */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="flex justify-center gap-4 mb-10"
+          className="flex justify-center gap-4 mb-12 flex-wrap"
         >
           {["All", "Web", "Mobile"].map((category) => (
             <motion.button
@@ -93,24 +94,25 @@ function Projects() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setFilter(category)}
-              className={`px-4 py-2 rounded-full font-medium border transition ${
+              className={`px-5 py-2.5 flex items-center gap-2 rounded-full font-medium border transition-all backdrop-blur-md ${
                 filter.toLowerCase() === category.toLowerCase()
-                  ? "bg-teal-500 text-white border-teal-500 shadow-md"
-                  : "text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:bg-teal-100 dark:hover:bg-gray-800"
+                  ? "bg-gradient-to-r from-teal-500 to-cyan-500 text-white border-none shadow-lg shadow-teal-500/30"
+                  : "text-gray-300 border-gray-700 hover:border-teal-500 hover:text-teal-400"
               }`}
             >
+              {category === "Web" ? <FaGlobe /> : category === "Mobile" ? <FaMobileAlt /> : null}
               {category}
             </motion.button>
           ))}
         </motion.div>
 
-        {/* Project Cards */}
+        {/* Project Grid */}
         <motion.div
-          className="grid gap-10 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           initial="hidden"
           whileInView="visible"
           variants={{
-            visible: { transition: { staggerChildren: 0.2 } },
+            visible: { transition: { staggerChildren: 0.15 } },
           }}
         >
           {filteredProjects.map((project, index) => (
@@ -120,24 +122,33 @@ function Projects() {
                 hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0 },
               }}
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
+              whileHover={{ scale: 1.05 }}
               onClick={() => setModalProject(project)}
-              className="cursor-pointer bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden hover:shadow-2xl transition-transform transform hover:-translate-y-1"
+              className="relative cursor-pointer group rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all transform hover:-translate-y-1"
             >
+              {/* Image */}
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-56 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="p-6 text-left">
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/30 dark:bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <p className="text-white dark:text-gray-900 font-semibold text-center px-4">
+                  {project.title}
+                </p>
+              </div>
+
+              {/* Card Details */}
+              <div className="p-5 bg-white dark:bg-gray-800">
                 <span className="inline-block text-xs uppercase tracking-wider text-teal-600 dark:text-teal-400 font-semibold mb-1">
                   {project.platform}
                 </span>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-3">
+                <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -174,9 +185,7 @@ function Projects() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold">
-                    {modalProject.title}
-                  </h3>
+                  <h3 className="text-2xl font-bold">{modalProject.title}</h3>
                   <button
                     onClick={() => setModalProject(null)}
                     className="text-gray-500 hover:text-teal-500 transition transform hover:rotate-90"
