@@ -1,169 +1,201 @@
-import React, { useState, useEffect } from "react";
+// Projects.jsx
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaTimes, FaGlobe, FaMobileAlt } from "react-icons/fa";
 import web1 from "../assets/t.jpg";
 import mobile from "../assets/rr.jpeg";
 import web2 from "../assets/h.jpg";
+import pygame from "../assets/pygame.jpg"
 
-const projects = [
+const fallbackProjects = [
   {
+    id: "portfolink",
     title: "Portfolink Web App",
     platform: "Web",
     description:
       "A modern and responsive portfolio builder with a sharable one-time link instantly generated.",
-    tech: ["React", "Tailwind CSS", "Vite", "Firebase", "Node.js", "Express.js", "AI"],
+    tech: ["React", "Tailwind CSS", "Vite", "Node.js", "Express.js"],
     image: web2,
     github: "https://github.com/praisecracks/Portfolink",
     live: "https://portfolink-ck.netlify.app",
   },
   {
+    id: "dufeed",
     title: "News & Event Reporting System",
     platform: "Web",
     description: "A news and event reporting system for Dominion University.",
-    tech: ["React", "Firebase", "CSS", "Tailwind CSS", "Bootstrap"],
+    tech: ["React", "CSS", "Tailwind CSS", "Bootstrap"],
     image: web1,
     github: "https://github.com/praisecracks/DU-FEED-APP",
     live: "https://du-feed.netlify.app",
   },
   {
+    id: "animal",
     title: "Animal Health Tracker",
     platform: "Mobile",
     description:
       "Mobile app that tracks animal health and connects to nearby vet clinics.",
-    tech: ["React Native", "MongoDB", "Tailwind CSS", "Google Maps API", "Firebase"],
+    tech: ["React Native", "Tailwind CSS", "Google Maps API"],
     image: mobile,
     github: "https://github.com/praisecracks/Animal-health-Tracker",
     live: "https://github.com/praisecracks/Animal-health-Tracker",
   },
+  {
+    id: "pygame2048",
+    title: "Pygame2048",
+    platform: "Mobile",
+    description:
+      "2048 implemented with Python and Pygame — deployed on Vercel and playable in-browser.",
+    tech: ["Python", "Pygame"],
+    image: pygame,
+    github: "https://github.com/praisecracks/PYGAME-2048",
+    live: "https://pygame-2048.vercel.app",
+  },
 ];
 
-function Projects() {
-  const [modalProject, setModalProject] = useState(null);
+export default function Projects() {
   const [filter, setFilter] = useState("All");
+  const [showAll, setShowAll] = useState(false);
+  const [modalProject, setModalProject] = useState(null);
 
+  // Apply category filter
   const filteredProjects =
     filter === "All"
-      ? projects
-      : projects.filter(
+      ? fallbackProjects
+      : fallbackProjects.filter(
           (p) => p.platform.toLowerCase() === filter.toLowerCase()
         );
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") setModalProject(null);
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  // Control how many to show
+  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 3);
 
   return (
     <section
       id="projects"
       className="bg-gray-100 dark:bg-gray-900 py-20 px-6 md:px-12 transition-colors duration-500"
     >
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Heading */}
+      <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="kode-mono text-5xl sm:text-9xl font-extrabold text-transparent bg-clip-text 
-                     bg-gradient-to-r from-teal-800 via-purple-300 to-purple-600 mb-6 text-left"
+          className="kode-mono text-5xl sm:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-800 via-purple-300 to-purple-600 mb-6"
         >
           Projects
         </motion.h2>
+
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-gray-600 dark:text-gray-300 text-left mb-12 max-w-2xl mx-auto"
+          className="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl"
         >
-          Explore my recent work with a focus on futuristic design, smooth UX,
-          and interactive functionality.
+          Explore my recent work with a focus on futuristic design, smooth UX, and interactive functionality.
         </motion.p>
 
-        {/* Filter Tabs */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="flex justify-center gap-4 mb-12 flex-wrap"
-        >
-          {["All", "Web", "Mobile"].map((category) => (
-            <motion.button
-              key={category}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setFilter(category)}
-              className={`px-5 py-2.5 flex items-center gap-2 rounded-full font-medium border transition-all backdrop-blur-md ${
-                filter.toLowerCase() === category.toLowerCase()
-                  ? "bg-gradient-to-r from-teal-500 to-cyan-500 text-white border-none shadow-lg shadow-teal-500/30"
-                  : "text-gray-300 border-gray-700 hover:border-teal-500 hover:text-teal-400"
-              }`}
-            >
-              {category === "Web" ? <FaGlobe /> : category === "Mobile" ? <FaMobileAlt /> : null}
-              {category}
-            </motion.button>
-          ))}
-        </motion.div>
+        {/* Filter buttons + toggle */}
+        <div className="flex items-center justify-between flex-wrap gap-4 mb-10">
+          <div className="flex gap-3 flex-wrap">
+            {["All", "Web", "Mobile"].map((category) => (
+              <button
+                key={category}
+                onClick={() => setFilter(category)}
+                className={`px-5 py-2.5 rounded-full border text-sm font-medium transition ${
+                  filter === category
+                    ? "bg-gradient-to-r from-teal-500 to-cyan-500 text-white border-none shadow-lg shadow-teal-500/30"
+                    : "text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:border-teal-500"
+                }`}
+              >
+                {category === "Web" ? (
+                  <FaGlobe className="inline mr-2" />
+                ) : category === "Mobile" ? (
+                  <FaMobileAlt className="inline mr-2" />
+                ) : null}
+                {category}
+              </button>
+            ))}
+          </div>
 
-        {/* Project Grid */}
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="px-5 py-2.5 text-sm font-semibold rounded-full border border-gray-400 dark:border-gray-700 hover:bg-teal-500 hover:text-white transition"
+          >
+            {showAll ? "Show Less" : "Show All Projects"}
+          </button>
+        </div>
+
+        {/* Grid layout */}
         <motion.div
-          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           initial="hidden"
           whileInView="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.15 } },
-          }}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+          className={`grid gap-8 ${
+            showAll ? "sm:grid-cols-2" : "md:grid-cols-12"
+          }`}
         >
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              whileHover={{ scale: 1.05 }}
-              onClick={() => setModalProject(project)}
-              className="relative cursor-pointer group rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all transform hover:-translate-y-1"
-            >
-              {/* Image */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-56 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/30 dark:bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <p className="text-white dark:text-gray-900 font-semibold text-center px-4">
-                  {project.title}
-                </p>
-              </div>
-
-              {/* Card Details */}
-              <div className="p-5 bg-white dark:bg-gray-800">
-                <span className="inline-block text-xs uppercase tracking-wider text-teal-600 dark:text-teal-400 font-semibold mb-1">
-                  {project.platform}
-                </span>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="bg-teal-100 dark:bg-teal-800 text-teal-800 dark:text-teal-100 text-xs px-2 py-1 rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+          {showAll ? (
+            // Two-column layout for all projects
+            displayedProjects.map((p) => (
+              <motion.div
+                key={p.id}
+                whileHover={{ scale: 1.03 }}
+                onClick={() => setModalProject(p)}
+                className="relative cursor-pointer group rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl"
+              >
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="p-5 bg-white dark:bg-gray-800">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    {p.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2 line-clamp-3">
+                    {p.description}
+                  </p>
                 </div>
+              </motion.div>
+            ))
+          ) : (
+            // Default layout: 1 large + 2 stacked
+            <>
+              {displayedProjects[0] && (
+                <div className="md:col-span-7 col-span-12 group relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 cursor-pointer"
+                     onClick={() => setModalProject(displayedProjects[0])}>
+                  <img
+                    src={displayedProjects[0].image}
+                    alt={displayedProjects[0].title}
+                    className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
+                    <h3 className="text-3xl font-bold text-white mb-2">{displayedProjects[0].title}</h3>
+                    <p className="text-gray-300">{displayedProjects[0].description}</p>
+                  </div>
+                </div>
+              )}
+
+              <div className="md:col-span-5 col-span-12 grid grid-rows-2 gap-6">
+                {displayedProjects.slice(1, 3).map((p) => (
+                  <div
+                    key={p.id}
+                    onClick={() => setModalProject(p)}
+                    className="group relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg cursor-pointer"
+                  >
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="p-4 bg-gradient-to-t from-black/60 to-transparent">
+                      <h4 className="text-lg font-bold text-white">{p.title}</h4>
+                      <p className="text-sm text-gray-300 mt-2 line-clamp-2">{p.description}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </motion.div>
-          ))}
+            </>
+          )}
         </motion.div>
 
         {/* Modal */}
@@ -177,11 +209,11 @@ function Projects() {
               onClick={() => setModalProject(null)}
             >
               <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.95, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="relative bg-white dark:bg-gray-900 text-gray-800 dark:text-white max-w-2xl w-full mx-4 rounded-2xl p-6 shadow-2xl"
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                transition={{ duration: 0.25 }}
+                className="relative bg-white dark:bg-gray-900 text-gray-800 dark:text-white max-w-3xl w-full rounded-2xl p-6 shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex justify-between items-start mb-4">
@@ -193,33 +225,35 @@ function Projects() {
                     <FaTimes size={20} />
                   </button>
                 </div>
+
                 <img
                   src={modalProject.image}
                   alt={modalProject.title}
                   className="w-full h-64 object-cover rounded-lg mb-4"
                 />
+
                 <p className="mb-3">{modalProject.description}</p>
-                <p className="text-sm text-teal-600 dark:text-teal-400 mb-4">
-                  Platform: {modalProject.platform} <br />
-                  Stack: {modalProject.tech.join(" • ")}
-                </p>
                 <div className="flex gap-4">
-                  <a
-                    href={modalProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-teal-500 hover:text-teal-700"
-                  >
-                    <FaGithub size={20} />
-                  </a>
-                  <a
-                    href={modalProject.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-teal-500 hover:text-teal-700"
-                  >
-                    <FaExternalLinkAlt size={20} />
-                  </a>
+                  {modalProject.github && (
+                    <a
+                      href={modalProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-teal-500 hover:text-teal-700 flex items-center gap-2"
+                    >
+                      <FaGithub /> Source
+                    </a>
+                  )}
+                  {modalProject.live && (
+                    <a
+                      href={modalProject.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-teal-500 hover:text-teal-700 flex items-center gap-2"
+                    >
+                      <FaExternalLinkAlt /> Live
+                    </a>
+                  )}
                 </div>
               </motion.div>
             </motion.div>
@@ -229,5 +263,3 @@ function Projects() {
     </section>
   );
 }
-
-export default Projects;

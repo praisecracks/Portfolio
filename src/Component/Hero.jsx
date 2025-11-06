@@ -90,7 +90,7 @@ const Hero = () => {
         <span className="font-medium text-gray-900 dark:text-white">
           Durotoluwa Praise
         </span>
-        , a{" "}
+        , A{" "}
         <span className="text-teal-500 dark:text-teal-400 font-semibold">
           Full-Stack Developer
         </span>{" "}
