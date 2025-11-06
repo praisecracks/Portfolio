@@ -45,7 +45,7 @@ const fallbackProjects = [
     title: "Pygame2048",
     platform: "Mobile",
     description:
-      "2048 implemented with Python and Pygame — deployed on Vercel and playable in-browser.",
+      "2048 implemented with Python and Pygame deployed on Vercel and playable in-browser.",
     tech: ["Python", "Pygame"],
     image: pygame,
     github: "https://github.com/praisecracks/PYGAME-2048",
@@ -118,7 +118,7 @@ export default function Projects() {
 
           <button
             onClick={() => setShowAll(!showAll)}
-            className="px-5 py-2.5 text-sm font-semibold rounded-full border border-gray-400 dark:border-gray-700 hover:bg-teal-500 hover:text-white transition"
+            className="px-5 py-2.5 text-sm font-semibold rounded-full border border-gray-400 dark:border-gray-700 hover:bg-teal-500 hover:text-white transition dark:text-gray-400 dark:hover:text-gray-200"
           >
             {showAll ? "Show Less" : "Show All Projects"}
           </button>

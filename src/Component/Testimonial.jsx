@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaStar } from "react-icons/fa";
+import NigeriaMan from "../assets/man.jpg"
 
 const testimonials = [
   {
@@ -30,7 +31,7 @@ const testimonials = [
   {
     name: "Adeola James",
     title: "Business Consultant, Lagos",
-    avatar: "https://randomuser.me/api/portraits/men/89.jpg", // Replace with your Nigerian business image later
+    avatar: NigeriaMan,
     rating: 5,
     quote:
       "Working with Praise was a professional experience from start to finish. His communication, reliability, and quality of work make him stand out in every project we collaborate on.",
