@@ -1,44 +1,41 @@
+// Toolkit.jsx - PREMIUM UPGRADE 🚀
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaReact, FaHtml5, FaCss3Alt, FaNodeJs,
   FaGitAlt, FaFigma, FaBootstrap, FaGem, FaGithub, FaNpm,
+  FaDatabase
 } from 'react-icons/fa';
 import {
   SiJavascript, SiFirebase, SiTailwindcss, SiExpress, SiTypescript, SiPostman,
+  SiMongodb, SiAdobephotoshop, SiVite
 } from 'react-icons/si';
-import { FaDatabase } from "react-icons/fa6"; // For SQL and MongoDB
 import { FaGolang } from "react-icons/fa6";
-import { SiMongodb, SiAdobephotoshop } from "react-icons/si";
-
 
 const toolGroups = {
   Frontend: [
-    { name: 'React', icon: <FaReact className="text-blue-400" />, experience: 4, proficiency: 90, desc: 'Modern JavaScript library for building UIs' },
-    { name: 'JavaScript', icon: <SiJavascript className="text-yellow-400" />, experience: 4, proficiency: 95, desc: 'Core programming language for web development' },
-    { name: 'TypeScript', icon: <SiTypescript className="text-blue-700" />, experience: 3, proficiency: 80, desc: 'Typed superset of JavaScript for better tooling' },
-    { name: 'HTML5', icon: <FaHtml5 className="text-orange-500" />, experience: 4, proficiency: 95, desc: 'Markup language for structuring web content' },
-    { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500" />, experience: 4, proficiency: 90, desc: 'Style sheet language for designing web pages' },
-    { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-cyan-400" />, experience: 2, proficiency: 85, desc: 'Utility-first CSS framework for rapid design' },
-    { name: 'Bootstrap', icon: <FaBootstrap className="text-purple-600" />, experience: 3, proficiency: 85, desc: 'CSS framework for responsive design' },
+    { name: 'React', icon: <FaReact className="text-blue-400" />, experience: 4, proficiency: 92, desc: 'Modern UI library with hooks & concurrent features' },
+    { name: 'JavaScript', icon: <SiJavascript className="text-yellow-400" />, experience: 4, proficiency: 95, desc: 'ES6+ modern web development language' },
+    { name: 'TypeScript', icon: <SiTypescript className="text-blue-700" />, experience: 3, proficiency: 85, desc: 'Type-safe JavaScript superset' },
+    { name: 'HTML5', icon: <FaHtml5 className="text-orange-500" />, experience: 4, proficiency: 95, desc: 'Semantic markup & modern web standards' },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-cyan-400" />, experience: 2, experience: 88, desc: 'Utility-first CSS framework' },
+    { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500" />, experience: 4, proficiency: 90, desc: 'Advanced styling with animations & flexbox' },
+    { name: 'Vite', icon: <SiVite className="text-emerald-400" />, experience: 2, proficiency: 85, desc: 'Next-gen frontend tooling' },
   ],
   Backend: [
-    { name: 'Node.js', icon: <FaNodeJs className="text-green-500" />, experience: 3, proficiency: 80, desc: 'JavaScript runtime for server-side development' },
-    { name: 'Express', icon: <SiExpress className="text-gray-700 dark:text-white" />, experience: 2, proficiency: 75, desc: 'Minimalist web framework for Node.js' },
-    { name: 'Firebase', icon: <SiFirebase className="text-orange-400" />, experience: 2, proficiency: 80, desc: 'Backend-as-a-service for real-time data & auth' },
-    { name: 'Ruby', icon: <FaGem className="text-red-500" />, experience: 3, proficiency: 70, desc: 'Elegant programming language for backend development' },
-        { name: 'Go', icon: <FaGolang className="text-teal-500" />, experience: 2, proficiency: 60, desc: 'For backend development and Cloud services' },
-    { name: 'SQL', icon: <FaDatabase className="text-indigo-500" />, experience: 3, proficiency: 75, desc: 'Relational database management system' },
-    { name: 'MongoDB', icon: <SiMongodb className="text-green-600" />, experience: 2, proficiency: 70, desc: 'NoSQL database for flexible document storage' },
+    { name: 'Node.js', icon: <FaNodeJs className="text-green-500" />, experience: 3, proficiency: 82, desc: 'Server-side JavaScript runtime' },
+    { name: 'Express', icon: <SiExpress className="text-gray-800" />, experience: 2, proficiency: 78, desc: 'Fast Node.js web framework' },
+    { name: 'Firebase', icon: <SiFirebase className="text-orange-400" />, experience: 2, proficiency: 85, desc: 'Real-time BaaS platform' },
+    { name: 'Go', icon: <FaGolang className="text-teal-500" />, experience: 2, proficiency: 65, desc: 'High-performance backend language' },
+    { name: 'MongoDB', icon: <SiMongodb className="text-green-600" />, experience: 2, proficiency: 75, desc: 'NoSQL document database' },
+    { name: 'SQL', icon: <FaDatabase className="text-indigo-500" />, experience: 3, proficiency: 78, desc: 'Relational database systems' },
   ],
   Tools: [
-    { name: 'Git', icon: <FaGitAlt className="text-red-500" />, experience: 4, proficiency: 90, desc: 'Version control system for code collaboration' },
-    { name: 'GitHub', icon: <FaGithub className="text-gray-900 dark:text-white" />, experience: 4, proficiency: 90, desc: 'Git-based platform for code hosting & teamwork' },
-    { name: 'NPM', icon: <FaNpm className="text-red-600" />, experience: 3, proficiency: 85, desc: 'Package manager for Node.js dependencies' },
-    { name: 'Postman', icon: <SiPostman className="text-orange-500" />, experience: 2, proficiency: 80, desc: 'API testing and development environment' },
-    { name: 'Figma', icon: <FaFigma className="text-pink-500" />, experience: 2, proficiency: 80, desc: 'UI/UX design tool for prototyping and wireframing' },
-        { name: 'Photoshop', icon: <SiAdobephotoshop  className="text-blue-500" />, experience: 2, proficiency: 70, desc: 'UI/UX design tool for prototyping and wireframing' },
-
+    { name: 'Git/GitHub', icon: <FaGithub className="text-gray-800" />, experience: 4, proficiency: 92, desc: 'Version control & collaboration' },
+    { name: 'NPM/Yarn', icon: <FaNpm className="text-red-600" />, experience: 3, proficiency: 88, desc: 'Package management' },
+    { name: 'Postman', icon: <SiPostman className="text-orange-500" />, experience: 2, proficiency: 85, desc: 'API development & testing' },
+    { name: 'Figma', icon: <FaFigma className="text-pink-500" />, experience: 2, proficiency: 82, desc: 'UI/UX design & prototyping' },
+    { name: 'Photoshop', icon: <SiAdobephotoshop className="text-blue-500" />, experience: 2, proficiency: 75, desc: 'Professional image editing' },
   ],
 };
 
@@ -51,116 +48,221 @@ function Toolkit() {
     ? Object.values(toolGroups).flat()
     : toolGroups[selectedCategory];
 
+  // Staggered entrance variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+    }
+  };
+
   return (
-    <section id="toolkit" className="py-20 px-6 bg-gray-100 dark:bg-gray-900 transition-colors">
-      <div className="max-w-6xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="kode-mono text-5xl sm:text-8xl md:text-9xl font-extrabold text-transparent bg-clip-text 
-                     bg-gradient-to-r from-teal-800 via-purple-300 to-purple-600 mb-4 text-left drop-shadow-lg"
+    <section id="toolkit" className="py-24 px-6 md:px-12 bg-gradient-to-br from-gray-50/50 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-800/50">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { 
+              opacity: 1,
+              transition: { staggerChildren: 0.2 }
+            }
+          }}
+          viewport={{ once: true }}
         >
-          Technology
-        </motion.h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-teal-500 to-purple-400 rounded-full mb-6"></div>
+          <motion.h2
+            variants={cardVariants}
+            className="kode-mono text-5xl sm:text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-purple-500 to-pink-500 mb-6 drop-shadow-2xl"
+          >
+            Technology
+          </motion.h2>
+          
+          <motion.div
+            variants={cardVariants}
+            className="w-28 h-1 bg-gradient-to-r from-teal-500 via-purple-400 to-pink-500 rounded-full shadow-lg mb-8"
+            animate={{ 
+              scale: [1, 1.05, 1],
+              transition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+            }}
+          />
+          
+          <motion.p
+            variants={cardVariants}
+            className="text-xl md:text-2xl text-gray-700 dark:text-gray-200 mb-16 max-w-3xl leading-relaxed backdrop-blur-sm"
+          >
+            Technologies I use to build modern, scalable, and performant digital products.
+          </motion.p>
+        </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-gray-600 dark:text-gray-300 mb-10 max-w-2xl text-left"
+        {/* Filter Tabs */}
+        <motion.div 
+          className="flex flex-wrap gap-4 mb-16 justify-start"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
-          Technologies I use to build, design, and deliver modern digital products.
-        </motion.p>
-
-        <div className="flex justify-start flex-wrap gap-4 mb-10">
-          {categories.map((cat) => (
+          {categories.map((category, i) => (
             <motion.button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              whileTap={{ scale: 0.95 }}
-              whileHover={{ scale: 1.05 }}
-              className={`px-5 py-2 text-sm font-semibold rounded-full transition-all border ${
-                selectedCategory === cat
-                  ? 'bg-teal-600 text-white'
-                  : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700'
+              key={category}
+              custom={i}
+              variants={{
+                hidden: { scale: 0.8, opacity: 0 },
+                visible: (i) => ({
+                  scale: 1,
+                  opacity: 1,
+                  transition: { delay: i * 0.1 }
+                })
+              }}
+              initial="hidden"
+              whileInView="visible"
+              whileHover={{ 
+                scale: 1.08, 
+                y: -4,
+                boxShadow: "0 10px 30px rgba(20,184,166,0.4)"
+              }}
+              whileTap={{ scale: 0.96 }}
+              className={`group relative px-8 py-4 text-lg font-bold rounded-3xl backdrop-blur-xl border-2 overflow-hidden transition-all duration-500 ${
+                selectedCategory === category
+                  ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-white shadow-2xl shadow-teal-500/50 border-teal-400'
+                  : 'bg-white/70 dark:bg-gray-800/70 text-gray-800 dark:text-white border-gray-200/50 dark:border-gray-700/50 hover:border-teal-400 hover:bg-teal-50 dark:hover:bg-teal-900/30 hover:text-teal-700'
               }`}
+              onClick={() => setSelectedCategory(category)}
             >
-              {cat}
+              <span className="relative z-10">{category}</span>
+              <div className={`absolute inset-0 bg-gradient-to-r from-teal-400/20 to-cyan-400/20 -skew-x-12 transform opacity-0 group-hover:opacity-100 transition-all duration-500 ${selectedCategory === category ? 'opacity-100 rotate-2' : ''}`} />
             </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          <AnimatePresence>
+        {/* Tools Grid */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <AnimatePresence mode="wait">
             {filteredTools.map((tool, index) => (
-              <ToolCard key={tool.name} tool={tool} index={index} />
+              <ToolCard key={`${tool.name}-${selectedCategory}`} tool={tool} index={index} />
             ))}
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-// Individual Tool Card with tilt effect
 function ToolCard({ tool, index }) {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  let cardRef = null;
-
-  const handleMouseMove = (e) => {
-    const rect = cardRef.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 15; // tilt max 15deg
-    const y = -((e.clientY - rect.top) / rect.height - 0.5) * 15;
-    setTilt({ x, y });
-  };
-
-  const resetTilt = () => setTilt({ x: 0, y: 0 });
-
   return (
     <motion.div
-      ref={(el) => (cardRef = el)}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 20 }}
-      transition={{ delay: index * 0.05, duration: 0.5 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={resetTilt}
-      style={{
-        transform: `rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
-        perspective: 1000,
+      custom={index}
+      variants={{
+        hidden: { opacity: 0, y: 50, scale: 0.9 },
+        visible: (i) => ({
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: {
+            duration: 0.7,
+            delay: i * 0.08,
+            ease: [0.22, 1, 0.36, 1]
+          }
+        })
       }}
-      whileHover={{ scale: 1.05, boxShadow: '0 15px 25px rgba(20,184,166,0.3)' }}
-      className="relative backdrop-blur-md bg-white/80 dark:bg-gray-800/80 border border-white/30 dark:border-gray-700 rounded-xl p-6 cursor-pointer transition-transform"
+      whileHover={{
+        y: -12,
+        scale: 1.02,
+        boxShadow: "0 25px 50px rgba(20,184,166,0.3)",
+        transition: { duration: 0.4, ease: "backOut" }
+      }}
+      className="group relative bg-gradient-to-br from-white/90 to-gray-50/90 dark:from-gray-800/90 dark:to-gray-900/90 backdrop-blur-xl border border-white/40 dark:border-gray-700/50 rounded-3xl p-8 shadow-xl hover:shadow-2xl cursor-pointer overflow-hidden transform-gpu hover:-translate-y-2 transition-all duration-500"
     >
-      <div className="flex items-center gap-4 mb-4">
-        <motion.div
-          className="text-4xl"
-          whileHover={{ rotate: [0, 10, -10, 0], transition: { duration: 0.5 } }}
-        >
-          {tool.icon}
-        </motion.div>
-        <div className="text-left">
-          <h4 className="text-lg font-semibold text-gray-800 dark:text-white">{tool.name}</h4>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            {tool.experience}+ yrs • <span className="italic">{tool.desc}</span>
+      {/* Shine Effect */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
+        initial={{ x: -100 }}
+        whileHover={{ x: '100%' }}
+        transition={{ duration: 0.6 }}
+      />
+
+      {/* Card Content */}
+      <div className="relative z-10">
+        <div className="flex items-start gap-4 mb-6">
+          <motion.div
+            className="text-5xl p-3 bg-gradient-to-br from-teal-500/10 to-cyan-500/10 rounded-2xl backdrop-blur-sm border border-teal-200/50 shrink-0"
+            whileHover={{ 
+              rotate: [0, 5, -5, 0],
+              scale: 1.1,
+              transition: { duration: 0.6 }
+            }}
+          >
+            {tool.icon}
+          </motion.div>
+          
+          <div className="flex-1 min-w-0">
+            <h4 className="text-2xl font-black text-gray-900 dark:text-white group-hover:text-teal-600 transition-all duration-300 mb-2 leading-tight">
+              {tool.name}
+            </h4>
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+              {tool.experience}+ years • <span className="font-medium">{tool.desc}</span>
+            </p>
+          </div>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="relative">
+          <div className="h-3 bg-gradient-to-r from-gray-200/50 to-gray-300/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl overflow-hidden shadow-inner">
+            <motion.div
+              initial={{ width: 0, scaleX: 1 }}
+              animate={{ width: `${tool.proficiency}%` }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="h-full bg-gradient-to-r from-teal-500 via-teal-400 to-cyan-500 shadow-lg rounded-2xl relative overflow-hidden"
+            >
+              {/* Progress Shine */}
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent"
+                animate={{ x: ['0%', '-100%'] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </motion.div>
+          </div>
+          <p className="text-right text-sm font-bold text-teal-600 dark:text-teal-400 mt-2 tracking-wide">
+            {tool.proficiency}%
           </p>
         </div>
       </div>
-      <div className="mt-2">
-        <div className="h-2 bg-gray-300 dark:bg-gray-700 rounded-full overflow-hidden">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${tool.proficiency}%` }}
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
-            className="h-full bg-teal-500"
-          />
-        </div>
-        <p className="text-xs text-right text-teal-600 dark:text-teal-400 mt-1 font-medium">
-          {tool.proficiency}%
-        </p>
-      </div>
+
+      {/* Floating Proficiency Badge */}
+      <motion.div 
+        className="absolute top-4 -right-4 w-20 h-20 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-2xl opacity-0 group-hover:opacity-100"
+        initial={{ scale: 0, rotate: -180 }}
+        whileHover={{ 
+          scale: 1.1, 
+          rotate: 0,
+          y: -8,
+          transition: { type: "spring", stiffness: 400 }
+        }}
+      >
+        <span className="text-xl font-black text-white drop-shadow-lg">{tool.proficiency}%</span>
+      </motion.div>
     </motion.div>
   );
 }
