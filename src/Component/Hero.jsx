@@ -1,134 +1,114 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import TimeOrb from "./TimeOrb"; // 👈 Clock component
+import TimeOrb from "./TimeOrb";
+import AudioGrid from "./AudioGrid";
 
 const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex flex-col items-center justify-center h-screen text-center px-6 overflow-x-hidden transition-colors duration-500
-      bg-gradient-to-br from-gray-100 via-white to-gray-200 
-      dark:from-[#020617] dark:via-[#010410] dark:to-[#000000] overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden transition-colors duration-500 -mt-20 lg:mt-0 pt-20 lg:pt-0
+      bg-gradient-to-br from-gray-100 via-white to-gray-200
+      dark:from-[#020617] dark:via-[#010410] dark:to-black"
     >
-      {/* Ambient background glow for dark mode */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.08),transparent_75%)] dark:bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.15),transparent_80%)]"></div>
+      <AudioGrid />
 
-      {/* Futuristic Clock Background */}
-      <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none overflow-hidden">
-        <TimeOrb />
-      </div>
+      <div className="absolute inset-0
+        bg-[radial-gradient(circle_at_30%_40%,rgba(45,212,191,0.12),transparent_60%)]
+        dark:bg-[radial-gradient(circle_at_30%_40%,rgba(45,212,191,0.18),transparent_65%)]
+        pointer-events-none"
+      />
 
-      {/* Hello text */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-gray-600 dark:text-gray-300 text-lg tracking-widest mb-2 z-10"
+      <h1 className="absolute left-[-5%] top-1/2 -translate-y-1/2
+        text-[20rem] font-extrabold uppercase tracking-tight
+        text-black/5 dark:text-white/5
+        pointer-events-none select-none"
       >
-        Hello, I’m
-      </motion.p>
+        Developer
+      </h1>
 
-      {/* Big Name */}
-      <motion.h1
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
-        className="kode-mono text-[clamp(3rem,10vw,8rem)] font-extrabold text-gray-900 dark:text-white relative z-10 leading-none tracking-tight"
-        style={{
-          textShadow: `
-            0 0 25px rgba(79, 204, 188, 0.6),
-            0 0 40px rgba(3, 41, 57, 0.4),
-            0 8px 12px rgba(0,0,0,0.8)
-          `,
-        }}
-      >
-        Durotoluwa Praise
-        <span
-          className="block text-transparent text-[clamp(2rem,8vw,6rem)] font-extrabold mt-[-1.5rem]"
-          style={{
-            WebkitTextStroke: "1px rgba(255,255,255,0.05)",
-            transform: "scaleY(-1)",
-            opacity: 0.25,
-            filter: "blur(2px)",
-          }}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full h-full">
+        {/* LEFT — Glass Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="relative backdrop-blur-xl bg-white/50 dark:bg-white/5
+          border border-white/20 dark:border-white/10
+          rounded-3xl p-10 shadow-2xl max-w-lg"
         >
-          Durotoluwa Praise
-        </span>
-      </motion.h1>
+          <p className="text-sm tracking-widest text-gray-600 dark:text-gray-400 mb-3">
+            HELLO, I'M
+          </p>
 
-      {/* Typewriter Text */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8 }}
-        className="text-teal-500 dark:text-teal-400 text-2xl sm:text-3xl font-semibold mt-4 z-10"
-      >
-        <Typewriter
-          words={[
-            "Full Stack Developer",
-            "MERN Stack Specialist",
-            "Software Engineer",
-          ]}
-          loop
-          cursor
-          cursorStyle="_"
-          typeSpeed={70}
-          deleteSpeed={50}
-          delaySpeed={1500}
-        />
-      </motion.p>
+          <h2
+            className="kode-mono text-[clamp(2.8rem,6vw,4.5rem)]
+            font-extrabold text-gray-900 dark:text-white leading-tight"
+            style={{
+              textShadow: `
+                0 0 30px rgba(45,212,191,0.35),
+                0 10px 25px rgba(0,0,0,0.5)
+              `,
+            }}
+          >
+            Durotoluwa <br /> Praise
+          </h2>
 
-      {/* Bio */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        className="text-gray-700 dark:text-gray-400 text-base sm:text-lg mt-5 max-w-2xl mx-auto leading-relaxed z-10"
-      >
-        I’m{" "}
-        <span className="font-medium text-gray-900 dark:text-white">
-          Durotoluwa Praise
-        </span>
-        , A{" "}
-        <span className="text-teal-500 dark:text-teal-400 font-semibold">
-          Full-Stack Developer
-        </span>{" "}
-        passionate about building smooth, interactive, and user-friendly web
-        experiences that bring ideas to life through modern technology and clean
-        code.
-      </motion.p>
+          <p className="mt-4 text-teal-500 dark:text-teal-400 text-xl font-semibold">
+            <Typewriter
+              words={[
+                "Full Stack Developer",
+                "MERN Stack Specialist",
+                "Software Engineer",
+              ]}
+              loop
+              cursor
+              cursorStyle="_"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1500}
+            />
+          </p>
 
-      {/* Hire Me Button */}
-      <motion.a
-        href="#contact"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.8 }}
-        className="relative inline-block mt-10 px-10 py-3 rounded-full border border-teal-500/40 text-gray-900 dark:text-white font-semibold tracking-wide overflow-hidden group z-10"
-      >
-        <span className="absolute inset-0 rounded-full border-2 border-transparent before:absolute before:inset-0 before:rounded-full before:border-[2px] before:border-transparent before:animate-borderRun before:bg-[conic-gradient(from_0deg,rgba(45,212,191,1)_0deg,transparent_90deg,rgba(45,212,191,1)_180deg,transparent_270deg,rgba(45,212,191,1)_360deg)]"></span>
-        <span className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-purple-500 opacity-0 group-hover:opacity-100 opacity-20 blur-sm transition-opacity duration-700"></span>
-        <span className="relative z-10">Hire Me</span>
-      </motion.a>
+          <p className="mt-6 text-gray-700 dark:text-gray-400 leading-relaxed max-w-lg">
+            I design and build modern, high-performance web applications with a
+            strong focus on clean UI, smooth interactions, and scalable
+            architecture.
+          </p>
 
-      {/* Button Glow Animation */}
-      <style>{`
-        @keyframes borderRun {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        .before\\:animate-borderRun::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          animation: borderRun 4s linear infinite;
-        }
-      `}</style>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center mt-8 px-10 py-3
+            rounded-full border border-teal-500/40
+            text-gray-900 dark:text-white font-semibold
+            relative overflow-hidden group"
+          >
+            <span
+              className="absolute inset-0 bg-gradient-to-r
+              from-teal-400 via-cyan-400 to-purple-500
+              opacity-20 blur-xl group-hover:opacity-40 transition-opacity"
+            />
+            <span className="relative z-10">Hire Me</span>
+          </a>
+        </motion.div>
+
+        {/* RIGHT — TimeOrb */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2 }}
+          className="relative flex justify-center items-center"
+        >
+          <div className="absolute w-[420px] h-[420px]
+            bg-teal-500/20 blur-[120px] rounded-full"
+          />
+
+          <div className="relative scale-[1.15]">
+            <TimeOrb />
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 };

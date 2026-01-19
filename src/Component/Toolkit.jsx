@@ -52,7 +52,7 @@ function Toolkit() {
     : toolGroups[selectedCategory];
 
   return (
-    <section id="Toolkit" className="py-20 px-6 bg-gray-100 dark:bg-gray-900 transition-colors">
+    <section id="toolkit" className="py-20 px-6 bg-gray-100 dark:bg-gray-900 transition-colors">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, x: -50 }}
