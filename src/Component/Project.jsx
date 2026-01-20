@@ -13,7 +13,7 @@ import web1 from "../assets/t.jpg";
 import mobile from "../assets/rr.jpeg";
 import web2 from "../assets/h.jpg";
 import pygame from "../assets/pygame.jpg";
-import famchat from "../../public/famchat.jpg";
+import famchat from "../assets/famchat.jpg";
 
 const projects = [
   {
